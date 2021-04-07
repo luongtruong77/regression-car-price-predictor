@@ -1,0 +1,22 @@
+# Regression Project Proposal
+
+- In this project, I would like to build the regression model to predict the car's price based on its attributes and features.
+- This model will provide the necessary tool for individuals who want to buy or sell a car but have no-to-little knowledge about the market or the automotive industry. Specifically, with enough information, the model will spit out the car's price (+/- error in an acceptable range).
+- For the data, I will scrape from `cars.com` using `BeautifulSoup`.
+- The **features** that would likely be important and expected to play roles in the model are `Mileage, Rating, City MPG, Highway MPG, Drivetrain, Transmission`. Besides, I will investigate and engineer from the original dataset more features such as `Vehicle Year, Entertainment, Safety` to see if they play any role in the model.
+- The target will be the `Price` (in US dollar).
+- Tools:
+    - BeautifulSoup
+    - Pandas
+    - Seaborn
+    - Selenium
+    - Matplotlib
+    - Scikit-learn
+- Algorithms (planning):
+    - Linear Regression
+    - Regularized Linear Models (Ridge Reg, Lasso Reg)
+    - Ensemble (RandomForest, GradientBoosting)
+- Metrics:
+    - Mean_absolute_error
+    - Mean_squared_error
+    - R^2_score
