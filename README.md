@@ -1,2 +1,2 @@
-# Predicting car's price in King County's Area using Regression Model
+# Predicting car's price using Regression Model
 
