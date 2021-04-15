@@ -18,7 +18,6 @@ df = pd.read_csv('cleaned_full_data.csv', index_col=0)
 X_df = df[['Make', 'Car Model', 'Model Year', 'Mileage', 'Rating', 'Fuel Type', 'City MPG', 'Highway MPG', 'Drivetrain',
            'Engine', 'Exterior Color',
            'Interior Color', 'Transmission', 'Num_ent_features', 'Num_safe_features']]
-X_df['Fuel Type'] = X_df['Fuel Type'].apply(lambda x: x.strip())
 y_df = df.loc[:, 'Price']
 
 # Sidebar
@@ -596,7 +595,7 @@ def user_input_features():
             'Num_ent_features': Num_ent_features,
             'Num_safe_features': Num_safe_features
             }
-    features = pd.DataFrame(data, index=[0])
+    features = pd.DataFrame(data, index=[200000])
     return features
 
 
@@ -610,15 +609,15 @@ st.write(df)
 st.write('---')
 
 # Build Regression Model
-#model = LinearRegression()
-model = joblib.load('xgboost_model.pkl')
+#model = xgb.XGBRegressor()
+model = joblib.load('trained_xgboost_model.pkl')
 #model.fit(pd.get_dummies(X_df, drop_first=True), y_df)
 # Apply Model to Make Prediction
 #prediction = model.predict(new_df)[-1]
 prediction = format(model.predict(pd.get_dummies(new_df, drop_first=True))[-1], '.2f')
 
 st.header('Prediction')
-st.write('The {} {} {}-{} car with {} miles with the engine of {} is predicted to be **${}**'.format(
+st.write('The {} {} {}-{} car with {} miles with the engine of {} is predicted to be **${}**s'.format(
     df['Model Year'].values[0], df.Drivetrain.values[0], df.Make.values[0], df['Car Model'].values[0],
     df.Mileage.values[0], df.Engine.values[0], prediction))
 st.write('---')

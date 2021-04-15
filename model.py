@@ -5,6 +5,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 import joblib
+import xgboost as xgb
 
 st.write("""
 # Car's Price Prediction App
@@ -12,16 +13,15 @@ This app predicts the **Car's Price** based on its input features!
 """)
 st.write('---')
 
-# Loads the Boston House Price Dataset
+# Loads the cleaned dataset
 df = pd.read_csv('cleaned_full_data.csv', index_col=0)
 X_df = df[['Make', 'Car Model', 'Model Year', 'Mileage', 'Rating', 'Fuel Type', 'City MPG', 'Highway MPG', 'Drivetrain',
            'Engine', 'Exterior Color',
            'Interior Color', 'Transmission', 'Num_ent_features', 'Num_safe_features']]
-X_df['Fuel Type'] = X_df['Fuel Type'].apply(lambda x: x.strip())
 y_df = df.loc[:, 'Price']
 
 # Sidebar
-# Header of Specify Input Parameters
+# Header of Specify Numerical and Categorical Input Parameters
 st.sidebar.header('Specify Numerical Input Parameters')
 st.write("**Specify Categorical Input Parameters**")
 
@@ -576,8 +576,8 @@ def user_input_features():
                                   ('Black', 'Gray', 'White', 'Blue', 'Silver', 'Metallic', 'Red', 'Other'))
     Interior_Color = st.selectbox('Interior Color', ('Black', 'Graphite', 'Other', 'Gray', 'Ebony', 'Charcoal'))
     Transmission = st.selectbox('Transmission', ('Automatic', 'Manual'))
-    Num_ent_features = st.sidebar.slider('Number of entertainment features', 1, 10, 4)
-    Num_safe_features = st.sidebar.slider('Number of safety features', 1, 10, 4)
+    Num_ent_features = st.sidebar.slider('Number of entertainment features', 1, 10, 2)
+    Num_safe_features = st.sidebar.slider('Number of safety features', 1, 10, 2)
 
     data = {'Make': Make,
             'Car Model': Car_Model,
@@ -610,9 +610,10 @@ st.write('---')
 
 # Build Regression Model
 #model = LinearRegression()
-model = joblib.load('trained_model.pkl')
+model = joblib.load('trained_lin_model.pkl')
 #model.fit(pd.get_dummies(X_df, drop_first=True), y_df)
 # Apply Model to Make Prediction
+#prediction = model.predict(new_df)[-1]
 prediction = format(model.predict(pd.get_dummies(new_df, drop_first=True))[-1], '.2f')
 
 st.header('Prediction')
