@@ -507,11 +507,11 @@ def user_input_features():
                                            'M850',
                                            'Element',
                                            'G6'))
-    Model_Year = st.sidebar.slider("Year", 2001, 2022, 2018)
-    Mileage = st.sidebar.slider("Mileage", 1, 200000, 10000)
+    Model_Year = st.sidebar.slider("Year", 2001, 2022, 2019)
+    Mileage = st.sidebar.slider("Mileage", 1, 200000, 32000)
     Rating = st.sidebar.slider("Rating", 1.0, 5.0, 4.7)
     Fuel_Type = st.selectbox('Fuel Type', ('Gasoline', 'E85 Flex Fuel', 'Hybrid', 'Diesel', 'Electric'))
-    City_MPG = st.sidebar.slider("City MPG", 0, 210, 16)
+    City_MPG = st.sidebar.slider("City MPG", 0, 210, 18)
     Highway_MPG = st.sidebar.slider("Highway MPG", 0, 420, 25)
     Drivetrain = st.selectbox('Drivetrain', ('AWD', 'FWD', '4WD', 'RWD'))
     Engine = st.selectbox('Engine', ('2.0L',
@@ -577,7 +577,7 @@ def user_input_features():
     Interior_Color = st.selectbox('Interior Color', ('Black', 'Graphite', 'Other', 'Gray', 'Ebony', 'Charcoal'))
     Transmission = st.selectbox('Transmission', ('Automatic', 'Manual'))
     Num_ent_features = st.sidebar.slider('Number of entertainment features', 1, 10, 2)
-    Num_safe_features = st.sidebar.slider('Number of safety features', 1, 10, 2)
+    Num_safe_features = st.sidebar.slider('Number of safety features', 1, 10, 6)
 
     data = {'Make': Make,
             'Car Model': Car_Model,
@@ -617,7 +617,7 @@ model = joblib.load('trained_xgboost_model.pkl')
 prediction = format(model.predict(pd.get_dummies(new_df, drop_first=True))[-1], '.2f')
 
 st.header('Prediction')
-st.write('The {} {} {}-{} car with {} miles with the engine of {} is predicted to be **${}**s'.format(
+st.write('The {} {} {}-{} car with {} miles with the engine of {} is predicted to be **${}**'.format(
     df['Model Year'].values[0], df.Drivetrain.values[0], df.Make.values[0], df['Car Model'].values[0],
     df.Mileage.values[0], df.Engine.values[0], prediction))
 st.write('---')
