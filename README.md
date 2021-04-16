@@ -59,6 +59,6 @@ I use linear regression, polynomial regression, random forest regressor, gradien
 ---
 - The presentation in pdf file is included to logically and visually convey the results of the process of buidling models. 
 - In addition to the slides, the minimal predictive app for users is also being deployed to the cloud for testing and trying. 
-![](https://files.slack.com/files-pri/T01MF50RVGV-F01V2452F7S/untitled.png)
-![](https://files.slack.com/files-pri/T01MF50RVGV-F01U97P21L5/untitled2.png)
+![](https://github.com/luongtruong77/regression_proj/blob/main/figures/app1.png?raw=true)
+![](https://github.com/luongtruong77/regression_proj/blob/main/figures/app2.png?raw=true)
 
